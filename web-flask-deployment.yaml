@@ -1,0 +1,31 @@
+# improvement: don't hard code env variables or the image in this way
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flask
+    tier: frontend
+  name: web-flask
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask
+      tier: frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flask
+        tier: frontend
+    spec:
+      containers:
+        - name: web-flask
+          image: ECR URI
+          imagePullPolicy: Always
+          command: ["./run.sh"]
+          ports:
+            - containerPort: 80
+status: {}
